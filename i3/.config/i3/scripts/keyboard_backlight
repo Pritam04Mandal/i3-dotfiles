@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ "$1" == "inc" ]
+then
+  brightness=$(cat /sys/class/leds/smc::kbd_backlight/brightness)
+  max_brightness=$(cat /sys/class/leds/smc::kbd_backlight/max_brightness)
+
+  ((brightness+=5))
+  if [ $brightness -le $max_brightness ]
+  then
+    echo $brightness > /sys/class/leds/smc::kbd_backlight/brightness
+  fi;
+  if [ "$2" == "-v" ]
+  then 
+    notify-send "Keyboard Backlight" "$brightness" -t 50
+  fi;
+elif [ "$1" == "dec" ]
+then 
+  brightness=$(cat /sys/class/leds/smc::kbd_backlight/brightness)
+  max_brightness=$(cat /sys/class/leds/smc::kbd_backlight/max_brightness)
+  
+  ((brightness-=5))
+  if [ $brightness -le $max_brightness ]
+  then
+    echo $brightness > /sys/class/leds/smc::kbd_backlight/brightness
+  fi;
+  if [ "$2" == "-v" ]
+  then 
+    notify-send "Keyboard Backlight" "$brightness" -t 50
+  fi;
+fi;

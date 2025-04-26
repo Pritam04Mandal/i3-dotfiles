@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ "$1" == "inc" ]
+then
+	amixer -q sset Master unmute
+	amixer -q sset Master 5%+
+	if [ $2 ]
+	then 
+		vol=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+    volnoti-show $vol
+	fi;
+elif [ "$1" == "dec" ]
+then
+	amixer -q sset Master unmute
+	amixer -q sset Master 5%-
+	if [ $2 ]
+	then
+		vol=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+    volnoti-show $vol
+	fi;
+else
+	amixer -q sset Master toggle
+	if [ $2 ]
+	then
+		vol=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $4 }')
+    if [ $vol == "off" ]
+    then 
+      volnoti-show -m
+    else 
+		  vol=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+      volnoti-show $vol
+    fi;
+	fi;
+fi;
+

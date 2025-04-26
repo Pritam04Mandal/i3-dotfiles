@@ -1,0 +1,2 @@
+maim -u | convert - -blur 0x2 /home/pritam/.cache/lockscreen.png && i3lock -i /home/pritam/.cache/lockscreen.png  
+

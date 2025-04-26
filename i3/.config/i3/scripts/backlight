@@ -1,0 +1,150 @@
+#!/usr/bin/python3
+
+import argparse, subprocess, os
+
+IMAGE = str()
+
+def get_display_brightness():
+    display_brightness = str()
+    with subprocess.Popen(['/bin/sh', '-c', "xbacklight", "-get"], stdout=subprocess.PIPE) as proc:
+        display_brightness = proc.stdout.read().strip()
+    return str(int(float(display_brightness))).strip()
+
+def get_keyboard_brightness():
+    keyboard_brightness = str()
+    with open("/sys/class/leds/smc::kbd_backlight/brightness") as brightness:
+        keyboard_brightness = brightness.read()
+    return str(int(int(keyboard_brightness.strip())*(100/255))).strip()
+
+def show_notification(type):
+    image_path = str()
+    if "display" in type:
+        # image_path=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../res", "display-brightness-symbolic.svg"))
+        image_path = "/usr/share/pixmaps/volnoti/display-brightness-symbolic.svg"
+        subprocess.Popen([
+            "volnoti-show",
+            "-s",
+            image_path,
+            str(get_display_brightness())
+        ])
+    else:
+        # image_path=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../res", "keyboard-brightness-symbolic.svg"))
+        image_path = "/usr/share/pixmaps/volnoti/keyboard-brightness-symbolic.svg"        
+        subprocess.Popen([
+            "volnoti-show",
+            "-s",
+            image_path,
+            get_keyboard_brightness()
+        ])
+
+def set_keyboard_brightness(type, place):
+    keyboard_brightness = int(get_keyboard_brightness())
+    
+    if type in "-inc":
+        keyboard_brightness = int(int(keyboard_brightness+place)*(255/100))
+        if keyboard_brightness >= 255:
+            keyboard_brightness = 255
+    elif type in "-dec":
+        keyboard_brightness = int(int(keyboard_brightness-place)*(255/100))
+        if keyboard_brightness <= 0:
+            keyboard_brightness = 0
+    else:
+        keyboard_brightness = keyboard_brightness
+
+    with open("/sys/class/leds/smc::kbd_backlight/brightness", "w") as brightness:
+        brightness.write(str(keyboard_brightness))
+
+    show_notification("keyboard")
+
+def set_display_brightness(type, place):
+    if type in "-inc":
+        subprocess.Popen(["xbacklight", "-inc", str(place)])
+    else:
+        subprocess.Popen(["xbacklight", "-dec", str(place)])
+
+    show_notification("display")
+
+def main():
+    parser = argparse.ArgumentParser(description='Display and Keyboard Backlight controller')
+    parser.add_argument(
+        '-d',
+        '--display',
+        type=str,
+        metavar='',
+        required=False,
+        help='Display backlight'
+        )
+    parser.add_argument(
+        '-k',
+        '--keyboard',
+        type=str,
+        metavar='',
+        required=False,
+        help='Keyboard backlight'
+        )
+    
+    parser.add_argument(
+        '-s',
+        '--set',
+        type=str,
+        metavar='',
+        required=False,
+        help='Keyboard backlight'
+        )
+    
+    parser.add_argument(
+        '-t',
+        '--type',
+        type=str,
+        metavar='',
+        required=False,
+        help='Increment or Decrement backlight'
+        )
+    
+    parser.add_argument(
+        '-g',
+        '--get',
+        type=str,
+        metavar='',
+        required=False,
+        help='Keyboard backlight'
+        )
+
+    parser.add_argument(
+        '-i',
+        '--image',
+        type=str,
+        metavar='',
+        required=False,
+        help='Path to Image'
+        )
+    
+    args = parser.parse_args()
+    
+    # IMAGE = args.image
+
+    if args.get == "display":
+        print(get_display_brightness())
+    elif args.get == "keyboard":
+        print(get_keyboard_brightness())
+    elif args.set == "display":
+        if args.type == "inc":
+            set_display_brightness("inc", 5)
+        elif args.type == "dec":
+            set_display_brightness("dec", 5)
+        else:
+            print("Error!")
+        # print(get_display_brightness())
+    elif args.set == "keyboard":
+        if args.type == "inc":
+            set_keyboard_brightness("inc", 5)
+        elif args.type == "dec":
+            set_keyboard_brightness("dec", 5)
+        else:
+            print("Error!")
+        # print(get_keyboard_brightness())
+    else:
+        print("Error!")
+
+if __name__ == "__main__":
+    main()

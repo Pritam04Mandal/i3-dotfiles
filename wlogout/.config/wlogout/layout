@@ -1,0 +1,32 @@
+{
+    "label" : "lock",
+    "action" : "i3lock -i /home/pritam/Pictures/Wallpaper/wallpaper.png",
+    "text" : "Lock",
+    "keybind" : "l",
+    "height": 1,
+    "width": 1
+}
+{
+    "label" : "logout",
+    "action" : "i3 exit",
+    "text" : "Logout",
+    "keybind" : "e",
+    "height": 1,
+    "width": 1
+}
+{
+    "label" : "shutdown",
+    "action" : "shutdown now",
+    "text" : "Shutdown",
+    "keybind" : "s",
+    "height": 1,
+    "width": 1
+}
+{
+    "label" : "reboot",
+    "action" : "reboot",
+    "text" : "Reboot",
+    "keybind" : "r",
+    "height": 1,
+    "width": 1
+}

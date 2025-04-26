@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Define the backup and mirror list paths
+BACKUP_PATH="/etc/pacman.d/mirrorlist.backup"
+MIRRORLIST_PATH="/etc/pacman.d/mirrorlist"
+
+# Backup the existing mirrorlist
+echo "Backing up current mirrorlist to $BACKUP_PATH..."
+sudo cp $MIRRORLIST_PATH $BACKUP_PATH
+
+# Generate a new mirror list for India
+echo "Generating new mirrorlist..."
+sudo reflector --country India --protocol https --sort rate --save $MIRRORLIST_PATH
+
+# Update package database
+echo "Updating package database..."
+sudo pacman -Syyu
+
+echo "Mirror list updated successfully!"
+
