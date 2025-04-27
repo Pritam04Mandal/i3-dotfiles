@@ -5,4 +5,6 @@ if status is-interactive
     set -x PATH $ANDROID_HOME/emulator $PATH
     set -x PATH $ANDROID_HOME/tools/bin $PATH
     set -x PATH $ANDROID_HOME/cmdline-tools/latest/bin $PATH
-end
+    set -x UID (id -u)
+    set -x GID (id -g)
+  end
