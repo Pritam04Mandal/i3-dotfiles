@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+#!/bin/bash
 killall -q polybar
+#!/usr/bin/env bash
+
 
 echo "---" | tee -a /tmp/polybar.log
-polybar toph 2>&1 | tee -a /tmp/polybar.log & disown
+polybar main 2>&1 | tee -a /tmp/polybar.log & disown
+
+polybar second 2>&1 | tee -a /tmp/polybar.log & disown
 echo "Bars launched..."

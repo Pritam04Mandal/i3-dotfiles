@@ -7,4 +7,5 @@ if status is-interactive
     set -x PATH $ANDROID_HOME/cmdline-tools/latest/bin $PATH
     set -x UID (id -u)
     set -x GID (id -g)
+    set -x TERM xterm-256color
   end
