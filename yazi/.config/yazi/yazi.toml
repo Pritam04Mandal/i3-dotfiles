@@ -1,0 +1,13 @@
+[opener]
+play = [
+  {run = 'vlc "$@"', orphan = true, for = "unix"},
+  { run = '$EDITOR "$@"', block = true, for = "unix" }
+]
+
+
+
+[open]
+rules = [
+    # Video files → VLC
+    { mime = "video/*", use = "play" },
+]

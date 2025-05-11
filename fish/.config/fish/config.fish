@@ -8,4 +8,5 @@ if status is-interactive
     set -x UID (id -u)
     set -x GID (id -g)
     set -x TERM xterm-256color
+    set -x EDITOR vim
   end
