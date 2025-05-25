@@ -10,3 +10,5 @@ if status is-interactive
     set -x TERM xterm-256color
     set -x EDITOR vim
   end
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
