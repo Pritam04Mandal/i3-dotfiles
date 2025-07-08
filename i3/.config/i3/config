@@ -278,6 +278,6 @@ bindsym $mod+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-
 #External display setup
 exec_always xrandr --output HDMI-1 --mode 1920x1080
 exec_always xrandr --output eDP-1 --mode 1920x1080
-#exec_always xrandr --output HDMI-1 --same-as eDP-1 --mode 1920x1080
+exec_always xrandr --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --rate 100
 bindsym $mod+p exec xrandr --output eDP-1 --off
 
