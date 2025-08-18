@@ -12,7 +12,9 @@ if status is-interactive
     set -x FLUTTER_HOME /home/pritam/flutter/bin
     set -x PATH $FLUTTER_HOME/cache/dart-sdk/ $PATH
     set -x PATH $FLUTTER_HOME/ $PATH 
+    set -x XDG_CONFIG_HOME /home/pritam/.config
 end
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 oh-my-posh init fish --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/illusi0n.omp.json | source
+starship init fish | source
