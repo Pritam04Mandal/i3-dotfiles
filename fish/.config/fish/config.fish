@@ -17,4 +17,3 @@ end
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 oh-my-posh init fish --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/illusi0n.omp.json | source
-starship init fish | source
