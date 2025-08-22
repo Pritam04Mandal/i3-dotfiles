@@ -1,46 +1,44 @@
 * {
-    font: "Caskaydia Cove Nerd Font 13";
-    g-spacing: 10px;
+    font: "Caskaydia Cove Nerd Font 14";
+    g-spacing: 8px;
     g-margin: 0;
-    b-color: #000000FF;
-    fg-color: #FFFFFFFF;
-    fgp-color: #888888FF;
-    b-radius: 8px;
-    g-padding: 8px;
-    hl-color: #FFFFFFFF;
-    hlt-color: #000000FF;
-    alt-color: #111111FF;
-    wbg-color: #000000CC;
+    b-radius: 14px;
+
+    fg-color: #ECEFF4FF;
+    fgp-color: #B0BEC5FF;
+
+    hl-color: #88C0D0FF;
+    hlt-color: #1E1E2EFF;
+
+    alt-color: #2E3440CC;
+
+    wbg-color: #1E1E2EBB;     /* frosted glass effect */
+    w-border-color: #88C0D0FF;
     w-border: 2px solid;
-    w-border-color: #FFFFFFFF;
-    w-padding: 12px;
+    w-padding: 16px;
+
+    shadow-color: #000000AA;
 }
 
 configuration {
-    modi: "drun";
+    modi: "drun,window,ssh";
     show-icons: true;
-    display-drun: " ";
-    display-clipboard: " ";
-}
-
-listview {
-    columns: 1;
-    lines: 7;
-    fixed-height: true;
-    fixed-columns: true;
-    cycle: false;
-    scrollbar: false;
-    border: 0px solid;
+    display-drun: " Apps ";
+    display-ssh: " SSH ";
+    display-window: " Win ";
+    display-clipboard: " Clip ";
 }
 
 window {
     transparency: "real";
-    width: 450px;
+    width: 520px;
     border-radius: @b-radius;
     background-color: @wbg-color;
     border: @w-border;
     border-color: @w-border-color;
     padding: @w-padding;
+
+    /* shadow */
 }
 
 prompt {
@@ -50,54 +48,64 @@ prompt {
 inputbar {
     children: ["prompt", "entry"];
     spacing: @g-spacing;
+    background-color: #2E3440AA;
+    border-radius: @b-radius;
+    padding: 10px;
 }
 
 entry {
-    placeholder: "Search ";
+    placeholder: " Type to search...";
     text-color: @fg-color;
     placeholder-color: @fgp-color;
+    expand: true;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    fixed-height: true;
+    cycle: false;
+    scrollbar: false;
+    spacing: 6px;
 }
 
 mainbox {
-    spacing: @g-spacing;
-    margin: @g-margin;
-    padding: @g-padding;
+    spacing: 14px;
+    margin: 0;
+    padding: 0;
     children: ["inputbar", "listview", "message"];
 }
 
 element {
-    spacing: @g-spacing;
-    margin: @g-margin;
-    padding: @g-padding;
-    border: 0px solid;
+    spacing: 8px;
+    padding: 10px 14px;
     border-radius: @b-radius;
-    border-color: @b-color;
+    background-color: #2E344050;
+    text-color: @fg-color;
+    transition: 150;
+}
+
+element normal.normal {
     background-color: transparent;
     text-color: @fg-color;
 }
 
-element normal.normal {
-	background-color: transparent;
-	text-color: @fg-color;
-}
-
 element alternate.normal {
-	background-color: @alt-color;
-	text-color: @fg-color;
+    background-color: @alt-color;
+    text-color: @fg-color;
 }
 
-element selected.active {
-	background-color: @hl-color;
-	text-color: @hlt-color;
-}
-
-element selected.normal {
-	background-color: @hl-color;
-	text-color: @hlt-color;
+element selected.normal, element selected.active {
+    background-color: @hl-color;
+    text-color: @hlt-color;
+    font: "Caskaydia Cove Nerd Font Bold 14";
 }
 
 message {
-    background-color: red;
+    background-color: #BF616ACC;
+    text-color: #ECEFF4FF;
     border: 0px solid;
+    border-radius: @b-radius;
+    padding: 10px;
 }
 
