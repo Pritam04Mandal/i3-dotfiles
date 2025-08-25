@@ -1,0 +1,61 @@
+# ~/.config/yazi/yazi.toml
+
+[opener]
+play = [
+  { run = 'vlc "$@"', orphan = true, for = "unix" },
+  { run = '$EDITOR "$@"', block = true, for = "unix" },
+]
+
+[open]
+rules = [
+  # Video files → VLC
+  { mime = "video/*", use = "play" },
+]
+
+[manager]
+show_hidden = true
+sort_dir_first = true
+show_symlink = true
+
+[preview]
+max_width = 120
+max_height = 60
+tab_size = 4
+
+[theme]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+cursor = "#f5e0dc"
+
+selection_fg = "#1e1e2e"
+selection_bg = "#89b4fa"
+
+status_fg = "#cdd6f4"
+status_bg = "#313244"
+
+border = "#45475a"
+
+directory = "#89b4fa"
+executable = "#a6e3a1"
+symlink = "#f5c2e7"
+socket = "#fab387"
+block = "#f9e2af"
+char = "#94e2d5"
+fifo = "#f38ba8"
+
+[help]
+# Enable help bar at the bottom
+show = true
+# Define which keys to display in the helper
+keys = [
+  { key = "q", desc = "Quit" },
+  { key = "j/k", desc = "Down/Up" },
+  { key = "h/l", desc = "Parent/Enter" },
+  { key = "<Space>", desc = "Select" },
+  { key = "o", desc = "Open" },
+  { key = "yy", desc = "Yank" },
+  { key = "dd", desc = "Cut" },
+  { key = "p", desc = "Paste" },
+  { key = "?", desc = "Help" },
+]
+

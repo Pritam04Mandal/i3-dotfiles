@@ -10,19 +10,13 @@ image = [
   { run = 'feh "$@"', orphan = true, for = "unix" },
 ]
 
-
-pdf = [
-  { run = 'zathura "$@"', orphan = true, for = "unix" },
-]
-
 [open]
 rules = [
   { mime = "video/*", use = "play" },
   { mime = "image/*", use = "image" },
-  { mime = "application/pdf", use = "pdf" },
 ]
 
-[mgr]
+[manager]
 show_hidden = true
 sort_dir_first = true
 show_symlink = true
