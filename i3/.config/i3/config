@@ -247,7 +247,7 @@ mode "resize" {
 #picon
 exec_always --no-startup-id picom
 #wallpaper
-exec_always --no-startup-id "feh --bg-fill /home/pritam/Pictures/Wallpaper/wallpaper.jpg"
+exec_always --no-startup-id "feh --bg-fill /home/pritam/Pictures/Wallpaper/wallpaper3.jpg"
 
 
 
@@ -279,5 +279,5 @@ bindsym $mod+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-
 exec_always xrandr --output HDMI-1 --mode 1920x1080
 exec_always xrandr --output eDP-1 --mode 1920x1080
 exec_always xrandr --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --rate 100
-bindsym $mod+p exec xrandr --output eDP-1 --off
+exec_always xrandr --output eDP-1 --off
 
